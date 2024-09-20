@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Georgi Bulanov - Resume</title>
+    <title>Georgi Bulanov - Story-driven Chronological CV</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,61 +11,58 @@
             margin: 0;
             padding: 20px;
         }
-        h1 {
+        h1, h2, h3 {
             text-align: center;
             color: #333;
         }
-        nav {
-            text-align: center;
-            margin-bottom: 20px;
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
         }
-        nav a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            margin: 0 15px;
+        h2, h3 {
+            margin-top: 20px;
+            font-size: 20px;
         }
-        nav a:hover {
-            text-decoration: underline;
+        p, li {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
         }
-        #content {
+        .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-        pre {
-            background: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Georgi Bulanov - Resume</h1>
+    <div class="container">
+        <h1>Georgi Bulanov - Cloud Infrastructure Architect</h1>
 
-    <nav>
-        <a href="#" onclick="loadMarkdown('standardChronological.md')">Standard Chronological</a>
-        <a href="#" onclick="loadMarkdown('storyChronological.md')">Story-driven Chronological</a>
-        <a href="#" onclick="loadMarkdown('standardFunctional.md')">Standard Functional</a>
-        <a href="#" onclick="loadMarkdown('storyFunctional.md')">Story-driven Functional</a>
-    </nav>
-
-    <div id="content">
-        <p>Click on a link above to view the respective version of the resume.</p>
+        <div id="content">
+            <!-- The markdown content will be loaded here -->
+            <p>Loading CV...</p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        function loadMarkdown(fileName) {
-            fetch(fileName)
+        function loadMarkdown(file) {
+            fetch(file)
                 .then(response => response.text())
                 .then(text => {
                     document.getElementById('content').innerHTML = marked(text);
+                })
+                .catch(err => {
+                    document.getElementById('content').innerHTML = "<p>Failed to load content.</p>";
                 });
         }
+
+        // Load the markdown file
+        loadMarkdown('standardChronological.md'); // Replace 'storyChronological.md' with your markdown file
     </script>
 </body>
 </html>
