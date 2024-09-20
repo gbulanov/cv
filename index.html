@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Georgi Bulanov - Story-driven Chronological CV</title>
+    <title>Georgi Bulanov - Resume</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,58 +11,48 @@
             margin: 0;
             padding: 20px;
         }
-        h1, h2, h3 {
+        h1 {
             text-align: center;
             color: #333;
         }
-        h1 {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-        h2, h3 {
-            margin-top: 20px;
-            font-size: 20px;
-        }
-        p, li {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #555;
-        }
-        .container {
+        #content {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Georgi Bulanov - Cloud Infrastructure Architect</h1>
+    <h1>Georgi Bulanov - Resume</h1>
 
-        <div id="content">
-            <!-- The markdown content will be loaded here -->
-            <p>Loading CV...</p>
-        </div>
+    <div id="content">
+        <p>Loading content...</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        function loadMarkdown(file) {
-            fetch(file)
+        function loadMarkdown(fileUrl) {
+            fetch(fileUrl)
                 .then(response => response.text())
                 .then(text => {
                     document.getElementById('content').innerHTML = marked(text);
                 })
-                .catch(err => {
+                .catch(error => {
                     document.getElementById('content').innerHTML = "<p>Failed to load content.</p>";
+                    console.error('Error fetching the markdown file:', error);
                 });
         }
 
-        // Load the markdown file
-        loadMarkdown('./standardChronological.md'); // Replace 'storyChronological.md' with your markdown file
+        // Load the markdown file from your GitHub repository
+        loadMarkdown('https://raw.githubusercontent.com/gbulanov/cv/main/standardChronological.md'); // Update this URL
     </script>
 </body>
 </html>
