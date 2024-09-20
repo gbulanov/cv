@@ -37,13 +37,18 @@
         <p>Loading content...</p>
     </div>
 
+    <!-- Load marked.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        // Check if marked is correctly loaded
+        console.log('Marked version:', marked.version);
+
         function loadMarkdown(fileUrl) {
             fetch(fileUrl)
                 .then(response => response.text())
                 .then(text => {
-                    document.getElementById('content').innerHTML = marked(text);
+                    // Convert markdown to HTML using marked
+                    document.getElementById('content').innerHTML = marked.parse(text); // Changed from marked(text) to marked.parse(text)
                 })
                 .catch(error => {
                     document.getElementById('content').innerHTML = "<p>Failed to load content.</p>";
